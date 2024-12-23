@@ -440,6 +440,20 @@ function detectTyping(messageContainer) {
             
             
         });
+        document.addEventListener('click', (event) => {
+            if (!messageContainer.contains(event.target) && emojiTooltip.style.display === 'block') {
+                emojiTooltip.style.display = 'none'; // Hide the tooltip
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            // Check if the Delete key (or Backspace key) is pressed
+            if (event.key === 'Delete' || event.key === 'Backspace') {
+                event.preventDefault();
+                if (emojiTooltip.style.display === 'block') {
+                    emojiTooltip.style.display = 'none'; // Hide the tooltip
+                }
+            }
+        });
     } else {
         setTimeout(detectTyping, 1000);
     }

@@ -21,7 +21,7 @@
         "https://web.whatsapp.com/*",
         "https://www.instagram.com/*"
       ],
-      "js": ["content4.js"]
+      "js": ["content5.js"]
     }
   ]
 }
