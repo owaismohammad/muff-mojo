@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const workspaceRoot = process.cwd();
-const sourcePath = path.join(workspaceRoot, "data", "emoji-source-gemoji.json");
-const outputPath = path.join(workspaceRoot, "data", "emoji-dataset.js");
+const sourcePath = path.join(workspaceRoot, "src", "muffmojo", "data", "emoji-source-gemoji.json");
+const outputPath = path.join(workspaceRoot, "src", "muffmojo", "data", "emoji-dataset.js");
 
 const stopWords = new Set([
   "a",
@@ -58,7 +58,7 @@ function buildEntry(entry) {
 
 function toJavaScriptModule(dataset) {
   const banner =
-    "/* Generated from github/gemoji (MIT). Run `node scripts/build-emoji-dataset.mjs` to refresh. */";
+    "/* Generated from github/gemoji (MIT). Run `node src/muffmojo/scripts/build-emoji-dataset.mjs` to refresh. */";
 
   return `${banner}
 (function (global) {
@@ -67,7 +67,7 @@ function toJavaScriptModule(dataset) {
   app.emojiSource = {
     name: "github/gemoji",
     license: "MIT",
-    sourcePath: "data/emoji-source-gemoji.json"
+    sourcePath: "src/muffmojo/data/emoji-source-gemoji.json"
   };
 })(globalThis);
 `;

@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     { emoji: "😂", label: ":joy", subtitle: "laugh / haha / tears", key: "Enter" },
     { emoji: "🔥", label: ":fire", subtitle: "fire / hot / lit", key: "Tab" },
     { emoji: "❤️", label: ":heart", subtitle: "love / heart / crush", key: "Enter" },
-    { emoji: "🥺", label: ":plead", subtitle: "please / begging / eyes", key: "Tab" },
+    { emoji: "🥺", label: ":plead", subtitle: "please / begging / eyes", key: "ArrowUp" },
   ];
 
   const list = document.getElementById("emoji-list");
   const siteLink = document.getElementById("site-link");
 
   if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.getURL) {
-    siteLink.href = chrome.runtime.getURL("website/index.html");
+    siteLink.href = chrome.runtime.getURL("src/muffmojo/website/index.html");
   }
 
   list.innerHTML = "";

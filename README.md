@@ -1,36 +1,50 @@
 # MuffMojo
 
-MuffMojo is a Manifest V3 Chrome extension that injects emoji suggestions directly into modern chat composers using `:emoji` style commands.
+Current layout:
 
-## What changed
+- root manifest and popup files are the packaged Chrome extension entrypoints
+- `src/muffmojo/data/` contains the emoji dataset
+- `src/muffmojo/utils/` contains the shared runtime helpers
+- `src/muffmojo/website/` contains the standalone website
+- `src/muffmojo/scripts/` contains local maintenance scripts
+- `src/muffmojo/test-fixtures/` contains manual browser fixtures
 
-- Automatically reacquires and focuses the most likely visible chat composer when chats swap
-- Uses a bundled emoji dataset with fuzzy matching and keyboard-first selection
-- Ships a redesigned popup and a standalone landing page in `website/`
-- Cleans out the old legacy content scripts and extra generated docs
+## Current extension behavior
 
-## Package the extension
+- Auto-reacquires likely chat composers when chat UIs swap, including Instagram-style DM layouts
+- Uses fuzzy `:emoji` lookup in inputs, textareas, contenteditable editors, and role textboxes
+- Lets you trigger a new shortcode immediately after an inserted emoji
+- Replaces the active shortcode with the last used emoji when you press `ArrowUp`
 
-The extension is self-contained. Runtime emoji lookup uses `data/emoji-dataset.js`, so the packaged build does not fetch data from the network.
+## Packaging
 
-If you want to refresh the bundled dataset before packaging:
+Load the repo root as the unpacked extension.
 
-```bash
-node scripts/build-emoji-dataset.mjs
+If you want a clean deployable folder, build one with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File src\muffmojo\scripts\package-extension.ps1
 ```
 
-Then load the folder as an unpacked extension or zip the repo contents for distribution.
+Then load `dist/extension`.
+
+To refresh the bundled emoji dataset:
+
+```bash
+node src/muffmojo/scripts/build-emoji-dataset.mjs
+```
+
+To run the lightweight search smoke test:
+
+```bash
+node src/muffmojo/scripts/run-smoke-tests.mjs
+```
 
 ## Website
 
-The landing page lives in `website/index.html` and `website/styles.css`. From the popup, the "Open product page" action opens that bundled page inside the extension.
+Website files live in:
 
-## Dataset source
+- `src/muffmojo/website/index.html`
+- `src/muffmojo/website/styles.css`
 
-- Upstream source: [github/gemoji](https://github.com/github/gemoji)
-- Vendored source file: `data/emoji-source-gemoji.json`
-- License: MIT
-
-## Manual smoke page
-
-Open `test-fixtures/manual-smoke.html` after loading the unpacked extension to test the input, textarea, contenteditable, and role textbox flows.
+The popup opens that bundled website page via the extension package.

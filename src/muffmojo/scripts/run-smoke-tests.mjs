@@ -19,9 +19,9 @@ async function main() {
   sandbox.globalThis = sandbox;
   const context = vm.createContext(sandbox);
 
-  await loadScript("data/emoji-dataset.js", context);
-  await loadScript("utils/fuzzySearch.js", context);
-  await loadScript("utils/emojiDataset.js", context);
+  await loadScript("src/muffmojo/data/emoji-dataset.js", context);
+  await loadScript("src/muffmojo/utils/fuzzySearch.js", context);
+  await loadScript("src/muffmojo/utils/emojiDataset.js", context);
 
   const app = sandbox.MuffMojo;
   const dataset = app.emojiDataset.getDataset();

@@ -1,6 +1,7 @@
 (function (global) {
   const app = (global.MuffMojo = global.MuffMojo || {});
   const TOKEN_CHAR = /[a-zA-Z0-9_+-]/;
+  const EDITABLE_SELECTOR = "textarea, input, [contenteditable]:not([contenteditable='false']), [role='textbox']";
   const SUPPORTED_INPUT_TYPES = new Set([
     "",
     "email",
@@ -35,7 +36,28 @@
       return false;
     }
 
-    return element.isContentEditable || element.getAttribute("role") === "textbox";
+    return (
+      element.isContentEditable ||
+      (element.hasAttribute("contenteditable") && element.getAttribute("contenteditable") !== "false") ||
+      element.getAttribute("role") === "textbox"
+    );
+  }
+
+  function getParentElement(element) {
+    if (!element) {
+      return null;
+    }
+
+    if (element.parentElement) {
+      return element.parentElement;
+    }
+
+    const root = typeof element.getRootNode === "function" ? element.getRootNode() : null;
+    if (root instanceof global.ShadowRoot) {
+      return root.host;
+    }
+
+    return null;
   }
 
   function resolveEditableTarget(node) {
@@ -43,17 +65,16 @@
       return null;
     }
 
-    const element = node instanceof global.Element ? node : node.parentElement;
-    if (!element) {
-      return null;
+    let element = node instanceof global.Element ? node : node.parentElement;
+    while (element) {
+      if (isTextControl(element) || isRichTextTarget(element)) {
+        return element;
+      }
+
+      element = getParentElement(element);
     }
 
-    const directTarget = isTextControl(element) ? element : null;
-    if (directTarget) {
-      return directTarget;
-    }
-
-    return element.closest("textarea, input, [contenteditable='true'], [contenteditable='plaintext-only'], [role='textbox']");
+    return null;
   }
 
   function isEditableTarget(node) {
@@ -65,7 +86,9 @@
     return !character || !TOKEN_CHAR.test(character);
   }
 
-  function findTrigger(text, caretIndex) {
+  function findTrigger(text, caretIndex, options) {
+    const settings = options || {};
+    const minQueryLength = Number.isFinite(settings.minQueryLength) ? settings.minQueryLength : 2;
     if (!text || caretIndex == null) {
       return null;
     }
@@ -82,7 +105,7 @@
     start -= 1;
 
     const previous = start > 0 ? text[start - 1] : "";
-    if (!isBoundary(previous)) {
+    if (previous === ":") {
       return null;
     }
 
@@ -94,7 +117,7 @@
     const triggerText = text.slice(start, end);
     const query = triggerText.slice(1);
 
-    if (query.length < 2) {
+    if (query.length < minQueryLength) {
       return null;
     }
 
@@ -217,7 +240,7 @@
     return range;
   }
 
-  function readTextControlContext(target) {
+  function readTextControlContext(target, options) {
     if (!isTextControl(target)) {
       return null;
     }
@@ -229,7 +252,7 @@
       return null;
     }
 
-    const trigger = findTrigger(target.value, selectionStart);
+    const trigger = findTrigger(target.value, selectionStart, options);
     if (!trigger) {
       return null;
     }
@@ -246,7 +269,7 @@
     };
   }
 
-  function readRichTextContext(target) {
+  function readRichTextContext(target, options) {
     if (!isRichTextTarget(target)) {
       return null;
     }
@@ -258,7 +281,7 @@
 
     const textContent = target.textContent || "";
     const caretIndex = getTextOffset(target, selectionRange.startContainer, selectionRange.startOffset);
-    const trigger = findTrigger(textContent, caretIndex);
+    const trigger = findTrigger(textContent, caretIndex, options);
     if (!trigger) {
       return null;
     }
@@ -276,13 +299,13 @@
     };
   }
 
-  function readCaretContext(target) {
+  function readCaretContext(target, options) {
     if (isTextControl(target)) {
-      return readTextControlContext(target);
+      return readTextControlContext(target, options);
     }
 
     if (isRichTextTarget(target)) {
-      return readRichTextContext(target);
+      return readRichTextContext(target, options);
     }
 
     return null;
@@ -321,7 +344,7 @@
     }
 
     if (context.kind === "rich-text") {
-      const range = context.replacementRange.cloneRange();
+      const range = createTextOffsetRange(target, context.start, context.end);
       const selection = global.getSelection();
       const textNode = document.createTextNode(replacement);
 
@@ -330,6 +353,58 @@
 
       const nextRange = document.createRange();
       nextRange.setStart(textNode, replacement.length);
+      nextRange.collapse(true);
+
+      selection.removeAllRanges();
+      selection.addRange(nextRange);
+      target.focus();
+      dispatchFrameworkEvents(target);
+      return true;
+    }
+
+    return false;
+  }
+
+  function insertTextAtCaret(target, text) {
+    if (!target) {
+      return false;
+    }
+
+    if (isTextControl(target)) {
+      const selectionStart = target.selectionStart ?? target.value.length;
+      const selectionEnd = target.selectionEnd ?? selectionStart;
+      const nextValue = `${target.value.slice(0, selectionStart)}${text}${target.value.slice(selectionEnd)}`;
+      const nextCaretIndex = selectionStart + text.length;
+      setNativeValue(target, nextValue);
+      target.focus();
+      target.setSelectionRange(nextCaretIndex, nextCaretIndex);
+      dispatchFrameworkEvents(target);
+      return true;
+    }
+
+    if (isRichTextTarget(target)) {
+      const selection = global.getSelection();
+      let range = null;
+
+      if (selection && selection.rangeCount > 0) {
+        const candidateRange = selection.getRangeAt(0);
+        if (target.contains(candidateRange.startContainer)) {
+          range = candidateRange.cloneRange();
+        }
+      }
+
+      if (!range) {
+        range = document.createRange();
+        range.selectNodeContents(target);
+        range.collapse(false);
+      }
+
+      range.deleteContents();
+      const textNode = document.createTextNode(text);
+      range.insertNode(textNode);
+
+      const nextRange = document.createRange();
+      nextRange.setStart(textNode, text.length);
       nextRange.collapse(true);
 
       selection.removeAllRanges();
@@ -390,20 +465,23 @@
     const mirror = document.createElement("div");
     getSelectionMirrorStyle(target, mirror);
 
+    const computed = global.getComputedStyle(target);
+    const lineHeight = parseFloat(computed.lineHeight) || parseFloat(computed.fontSize) * 1.2 || 18;
     const before = target.value.slice(0, caretIndex);
-    const after = target.value.slice(caretIndex) || ".";
     mirror.textContent = before;
-
     const marker = document.createElement("span");
-    marker.textContent = after[0];
+    marker.textContent = "\u200b";
+    marker.style.display = "inline-block";
+    marker.style.width = "1px";
+    marker.style.height = `${lineHeight}px`;
     mirror.appendChild(marker);
     document.body.appendChild(mirror);
 
     const targetRect = target.getBoundingClientRect();
-    const computed = global.getComputedStyle(target);
-    const lineHeight = parseFloat(computed.lineHeight) || parseFloat(computed.fontSize) * 1.2 || 18;
-    const left = targetRect.left + marker.offsetLeft - target.scrollLeft;
-    const top = targetRect.top + marker.offsetTop - target.scrollTop;
+    const borderLeft = parseFloat(computed.borderLeftWidth) || 0;
+    const borderTop = parseFloat(computed.borderTopWidth) || 0;
+    const left = targetRect.left + borderLeft + marker.offsetLeft - target.scrollLeft;
+    const top = targetRect.top + borderTop + marker.offsetTop - target.scrollTop;
 
     mirror.remove();
 
@@ -424,6 +502,9 @@
 
     const marker = document.createElement("span");
     marker.textContent = "\u200b";
+    marker.style.display = "inline-block";
+    marker.style.width = "1px";
+    marker.style.height = "1em";
     const clone = range.cloneRange();
     clone.insertNode(marker);
     const markerRect = marker.getBoundingClientRect();
@@ -458,6 +539,7 @@
 
   app.editable = {
     getCaretAnchorRect,
+    insertTextAtCaret,
     isEditableTarget,
     readCaretContext,
     replaceActiveTrigger,
