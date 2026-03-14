@@ -3,37 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Google Fonts link -->
-
-    <title>Muff-Mojo 🧁</title>
+    <title>MuffMojo</title>
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div class="popup-container">
-        <a href="https://muffmojoweb.onrender.com" target="_blank" style="text-decoration: none;">
-      <h1>Muff-Mojo 🧁</h1>
-    </a>
-      <p>"Sprinkle Some Fun on Your Chats🍩"</p>
-      <p>Ready to use on Your favourite Socials be it Whatsapp or Instagram</p>
-      <div class="emoji-section">
-        <p class="emoji-title">All the emojis a word AWAY!</p>
-        <div class="emoji-list" id="emoji-list">
-          <!-- Emojis will be dynamically added here -->
+    <main class="popup-shell">
+      <section class="hero">
+        <p class="eyebrow">MuffMojo</p>
+        <h1>Emoji flow without leaving the keyboard.</h1>
+        <p class="lead">
+          Type a colon, keep typing naturally, and drop the right emoji straight into modern chat boxes.
+        </p>
+        <a class="hero-link" id="site-link" href="#">Open product page</a>
+      </section>
+
+      <section class="panel">
+        <p class="panel-title">Fast path</p>
+        <ol class="steps">
+          <li>Type <code>:joy</code>, <code>:fire</code>, <code>:party</code>, or <code>:smil</code>.</li>
+          <li>Press <code>Tab</code> or <code>Enter</code> to accept the highlighted emoji.</li>
+          <li>Use arrow keys to move between results, or <code>Esc</code> to close.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <p class="panel-title">Examples</p>
+          <span class="pill">Top matches</span>
         </div>
-      </div>
-
-      <div class="instructions">
-        <p><strong>Instructions:</strong></p>
-        <ul>
-          <li>Type the name of the emoji you want, It'll appear as a tooltip.</li>
-          <li>The extension will detect words and show related emojis.</li>
-          <li>Press the <strong>Up Arrow</strong> key to select your emoji.</li>
-          <li>If the <strong>Emoji</strong> doesn't show up just click on the text box and start typing again 😄</li>
-          <li>Click <strong><a href="https://muff-mojo.onrender.com" target="_blank" style="text-decoration: none;">Muff-Mojo🧁</a></strong> to know the names of your favourite emojis</li>
-        </ul>
-      </div>
-    </div>
+        <div class="examples" id="emoji-list"></div>
+      </section>
+    </main>
+    <script src="popup.js"></script>
   </body>
-
-  <script src="popup.js"></script>
 </html>

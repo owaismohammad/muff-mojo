@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muff-Mojo Manual Smoke</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        background: linear-gradient(180deg, #f8fafc, #e2e8f0);
+        color: #0f172a;
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        margin-top: 0;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      input,
+      textarea,
+      [contenteditable="true"],
+      [role="textbox"] {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        background: #fff;
+        box-sizing: border-box;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+
+      [contenteditable="true"],
+      [role="textbox"] {
+        min-height: 96px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Muff-Mojo manual smoke page</h1>
+      <p>Try typing <code>:joy</code>, <code>:fire</code>, <code>:smil</code>, and <code>:haha</code> in each field.</p>
+
+      <div class="grid">
+        <section class="card">
+          <label for="plain-input">Input</label>
+          <input id="plain-input" type="text" placeholder="Type :fire here" />
+        </section>
+
+        <section class="card">
+          <label for="plain-textarea">Textarea</label>
+          <textarea id="plain-textarea" placeholder="Type :joy here"></textarea>
+        </section>
+
+        <section class="card">
+          <label for="rich-editor">Contenteditable</label>
+          <div id="rich-editor" contenteditable="true" spellcheck="false"></div>
+        </section>
+
+        <section class="card">
+          <label for="role-editor">Role textbox</label>
+          <div id="role-editor" role="textbox" contenteditable="true" spellcheck="false"></div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
