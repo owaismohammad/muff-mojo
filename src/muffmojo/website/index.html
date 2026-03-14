@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MuffMojo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#">MuffMojo</a>
+      <nav class="site-nav">
+        <a href="#why">Why it wins</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#install">Install</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Chrome extension for fast chat writing</p>
+          <h1>Drop the right emoji into any chat box without breaking your flow.</h1>
+          <p class="hero-text">
+            MuffMojo turns <code>:emoji</code> shortcuts into instant, caret-aware suggestions across rich editors,
+            web messengers, and modern chat UIs.
+          </p>
+          <div class="cta-row">
+            <a class="cta cta-primary" href="#install">Install MuffMojo</a>
+            <a class="cta cta-secondary" href="#workflow">See the interaction</a>
+          </div>
+        </div>
+
+        <div class="hero-demo">
+          <div class="demo-window">
+            <div class="demo-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="chat-thread">
+              <div class="bubble bubble-in">Need a quick reply for the launch post?</div>
+              <div class="bubble bubble-out">Absolutely. Typing it now.</div>
+            </div>
+            <div class="composer">
+              <div class="composer-line">That update is <span class="typed">:fir</span></div>
+              <div class="tooltip">
+                <div class="tooltip-head">
+                  <span>MuffMojo</span>
+                  <span>:fir</span>
+                </div>
+                <div class="tooltip-item active">
+                  <span class="tooltip-emoji">🔥</span>
+                  <span class="tooltip-copy">
+                    <strong>:fire:</strong>
+                    <small>fire / hot / lit</small>
+                  </span>
+                  <span class="tooltip-key">Enter</span>
+                </div>
+                <div class="tooltip-item">
+                  <span class="tooltip-emoji">🚒</span>
+                  <span class="tooltip-copy">
+                    <strong>:fire_engine:</strong>
+                    <small>truck / rescue / engine</small>
+                  </span>
+                </div>
+                <div class="tooltip-item">
+                  <span class="tooltip-emoji">🧨</span>
+                  <span class="tooltip-copy">
+                    <strong>:firecracker:</strong>
+                    <small>explosive / pop / spark</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats">
+        <article>
+          <strong>Any modern editor</strong>
+          <span>Supports inputs, textareas, contenteditable, and role textbox flows.</span>
+        </article>
+        <article>
+          <strong>Fuzzy matching</strong>
+          <span>Searches standard emoji data so <code>haha</code> and <code>laugh</code> still find the right result.</span>
+        </article>
+        <article>
+          <strong>Keyboard-first</strong>
+          <span>Accept with <code>Tab</code> or <code>Enter</code>, move with arrows, close with <code>Esc</code>.</span>
+        </article>
+      </section>
+
+      <section class="feature-grid" id="why">
+        <article class="feature-card">
+          <p class="card-kicker">No picker detour</p>
+          <h2>Stay in the conversation instead of opening emoji trays.</h2>
+          <p>MuffMojo keeps your hands on the keyboard and your cursor exactly where you need it.</p>
+        </article>
+        <article class="feature-card">
+          <p class="card-kicker">Built for chat apps</p>
+          <h2>Understands the weird editable surfaces most extensions miss.</h2>
+          <p>It follows the active composer, reacquires swapped chat boxes, and works with modern web messaging UIs.</p>
+        </article>
+        <article class="feature-card">
+          <p class="card-kicker">Looks sharp</p>
+          <h2>Suggestions appear as a polished inline layer instead of a clunky overlay.</h2>
+          <p>Fast, branded, and lightweight enough to feel native inside the page you are already using.</p>
+        </article>
+      </section>
+
+      <section class="workflow" id="workflow">
+        <div>
+          <p class="eyebrow">Workflow</p>
+          <h2>Three beats. No friction.</h2>
+        </div>
+        <div class="workflow-list">
+          <article>
+            <span>01</span>
+            <h3>Type naturally</h3>
+            <p>Write a colon and two or more letters like <code>:smil</code> or <code>:joy</code>.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Pick instantly</h3>
+            <p>The best suggestion is highlighted by default and sits right under the caret.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Keep moving</h3>
+            <p>Hit <code>Enter</code> or <code>Tab</code> and continue typing without breaking rhythm.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="install" id="install">
+        <div>
+          <p class="eyebrow">Install</p>
+          <h2>Load the extension and start typing.</h2>
+        </div>
+        <ol>
+          <li>Open Chrome extension management and enable developer mode.</li>
+          <li>Load the MuffMojo folder as an unpacked extension.</li>
+          <li>Open your favorite chat app and type <code>:fire</code>.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

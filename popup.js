@@ -1,17 +1,48 @@
-// This code runs immediately when the popup opens to show emojis
-document.addEventListener('DOMContentLoaded', function() {
-    const emojiList = document.getElementById('emoji-list');
+document.addEventListener("DOMContentLoaded", () => {
+  const examples = [
+    { emoji: "😂", label: ":joy", subtitle: "laugh / haha / tears", key: "Enter" },
+    { emoji: "🔥", label: ":fire", subtitle: "fire / hot / lit", key: "Tab" },
+    { emoji: "❤️", label: ":heart", subtitle: "love / heart / crush", key: "Enter" },
+    { emoji: "🥺", label: ":plead", subtitle: "please / begging / eyes", key: "Tab" },
+  ];
 
-    // Example emoji suggestions
-    const emojis = ['😀', '😁', '😎', '❤️', '💥', '🎉', '🥳', '🌟', '🔥'];
+  const list = document.getElementById("emoji-list");
+  const siteLink = document.getElementById("site-link");
 
-    // Clear existing emojis
-    emojiList.innerHTML = '';
+  if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.getURL) {
+    siteLink.href = chrome.runtime.getURL("website/index.html");
+  }
 
-    // Add each emoji to the list
-    emojis.forEach(emoji => {
-        const span = document.createElement('span');
-        span.textContent = emoji;
-        emojiList.appendChild(span);
-    });
+  list.innerHTML = "";
+
+  examples.forEach((entry) => {
+    const item = document.createElement("article");
+    item.className = "example";
+
+    const emoji = document.createElement("span");
+    emoji.className = "example-emoji";
+    emoji.textContent = entry.emoji;
+
+    const copy = document.createElement("div");
+    copy.className = "example-copy";
+
+    const label = document.createElement("span");
+    label.className = "example-label";
+    label.textContent = entry.label;
+
+    const subtitle = document.createElement("span");
+    subtitle.className = "example-subtitle";
+    subtitle.textContent = entry.subtitle;
+
+    const key = document.createElement("span");
+    key.className = "example-key";
+    key.textContent = entry.key;
+
+    copy.appendChild(label);
+    copy.appendChild(subtitle);
+    item.appendChild(emoji);
+    item.appendChild(copy);
+    item.appendChild(key);
+    list.appendChild(item);
+  });
 });
