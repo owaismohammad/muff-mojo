@@ -1,19 +1,28 @@
 {
   "manifest_version": 3,
   "name": "Muff-Mojo 🧁",
-  "version": "2.0",
-  "description": "Sprinkle Some Fun on Your Chats 🍩\n\tInteractive browser extension that add expressive emojis to your typing experience.",
- 
+  "version": "3.0.0",
+  "description": "Sprinkle some fun on your chats 🍩 Type a word, get the emoji — on WhatsApp Web and Instagram.",
+  "permissions": ["storage"],
   "host_permissions": [
     "https://web.whatsapp.com/*",
     "https://www.instagram.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_logo": "muff64.png"
+    "default_title": "Muff-Mojo",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "icons": {
-    "512": "bgremoved.png"
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "content_scripts": [
     {
@@ -21,7 +30,8 @@
         "https://web.whatsapp.com/*",
         "https://www.instagram.com/*"
       ],
-      "js": ["content5.js"]
+      "js": ["emoji-data.js", "emojis.js", "content.js"],
+      "run_at": "document_idle"
     }
   ]
 }

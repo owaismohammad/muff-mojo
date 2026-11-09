@@ -1,39 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <!-- Google Fonts link -->
+<head>
+  <meta charset="UTF-8" />
+  <title>Muff-Mojo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,600;0,800;0,900;1,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body data-tab="emojis">
+  <script src="theme-boot.js"></script>
+  <main class="app">
+    <!-- decorative clouds -->
+    <svg class="cloud cloud-a" viewBox="0 0 200 90" aria-hidden="true"><path d="M30 80c-17 0-28-11-28-24s12-23 26-22c4-17 20-30 40-28 12-10 34-9 46 2 14-8 36-2 42 14 20 0 38 13 38 31s-14 27-32 27z"/></svg>
+    <svg class="cloud cloud-b" viewBox="0 0 200 90" aria-hidden="true"><path d="M30 80c-17 0-28-11-28-24s12-23 26-22c4-17 20-30 40-28 12-10 34-9 46 2 14-8 36-2 42 14 20 0 38 13 38 31s-14 27-32 27z"/></svg>
 
-    <title>Muff-Mojo 🧁</title>
-    <link rel="stylesheet" href="popup.css" />
-  </head>
-  <body>
-    <div class="popup-container">
-        <a href="https://muffmojoweb.onrender.com" target="_blank" style="text-decoration: none;">
-      <h1>Muff-Mojo 🧁</h1>
-    </a>
-      <p>"Sprinkle Some Fun on Your Chats🍩"</p>
-      <p>Ready to use on Your favourite Socials be it Whatsapp or Instagram</p>
-      <div class="emoji-section">
-        <p class="emoji-title">All the emojis a word AWAY!</p>
-        <div class="emoji-list" id="emoji-list">
-          <!-- Emojis will be dynamically added here -->
+    <header class="top">
+      <div class="top-left">
+        <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        </button>
+        <span class="ver">v<span id="version"></span></span>
+      </div>
+      <h1 class="wordmark" aria-label="Muff-Mojo"><span>muff</span><span>mojo</span></h1>
+      <label class="power" title="Turn Muff-Mojo on or off">
+        <input type="checkbox" id="enabled" checked />
+        <span class="power-pill" aria-hidden="true"><span class="power-dot"></span><span class="power-on">on</span><span class="power-off">off</span></span>
+        <span class="sr">Enable Muff-Mojo</span>
+      </label>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button role="tab" id="tab-emojis" aria-controls="panel-emojis" aria-selected="true">emojis</button>
+      <button role="tab" id="tab-howto" aria-controls="panel-howto" aria-selected="false">how to</button>
+      <button role="tab" id="tab-settings" aria-controls="panel-settings" aria-selected="false">settings</button>
+    </nav>
+
+    <!-- Emoji dictionary -->
+    <section class="panel" id="panel-emojis" role="tabpanel" aria-labelledby="tab-emojis">
+      <h2 class="title">all the emojis,<br />a word away!</h2>
+      <div class="search">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="m14 14 4 4"/></svg>
+        <input id="q" type="search" placeholder="search emojis or words…" autocomplete="off" spellcheck="false" />
+      </div>
+      <div class="chips-wrap" id="chips-wrap">
+        <button type="button" class="chips-nav prev" id="chips-prev" aria-label="Previous categories" tabindex="-1">‹</button>
+        <div class="chips" id="chips" role="toolbar" aria-label="Categories"></div>
+        <button type="button" class="chips-nav next" id="chips-next" aria-label="More categories" tabindex="-1">›</button>
+      </div>
+      <div class="card">
+        <div class="grid-wrap" id="grid-wrap">
+          <div id="grid"></div>
+          <p class="empty" id="empty" hidden>no emoji for “<span id="empty-q"></span>” yet.</p>
+        </div>
+        <footer class="detail" id="detail" aria-live="polite">
+          <span class="detail-emoji" id="detail-emoji">🧁</span>
+          <span class="detail-text" id="detail-text">Hover an emoji to see what to type · click to copy</span>
+        </footer>
+      </div>
+    </section>
+
+    <!-- How to -->
+    <section class="panel" id="panel-howto" role="tabpanel" aria-labelledby="tab-howto" hidden>
+      <h2 class="title">type a word,<br />get the emoji!</h2>
+      <div class="demo" aria-hidden="true">
+        <div class="demo-pop"><span class="on">😍</span><span>❤️</span><span>💑</span></div>
+        <div class="demo-input">see you soon <b>love</b><i class="caret"></i></div>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="tag">1 · type</span>
+          <p>In a chat box, type a word like <code>happy</code> or <code>love</code>. Emojis pop up above it, and they start showing after the first few letters (<code>hap…</code>).</p>
+        </li>
+        <li>
+          <span class="tag">2 · pick</span>
+          <p><kbd>↑</kbd> moves to the next emoji, <kbd>↓</kbd> back. Press <kbd>Tab</kbd> to insert, or just click it.</p>
+        </li>
+        <li>
+          <span class="tag">3 · search</span>
+          <p>Type <code>:</code> and a few letters (<code>:lau</code>) to search everything. <kbd>Enter</kbd> works here too.</p>
+        </li>
+      </ol>
+      <p class="hint"><kbd>Esc</kbd> hides the picker for that word. <kbd>Enter</kbd> still sends your message as usual.</p>
+    </section>
+
+    <!-- Settings -->
+    <section class="panel" id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+      <h2 class="title">make it<br />yours.</h2>
+      <h3 class="group">sites</h3>
+      <label class="row">
+        <span class="row-text"><b>WhatsApp Web</b><small>web.whatsapp.com</small></span>
+        <input type="checkbox" class="toggle" data-site="whatsapp" checked />
+      </label>
+      <label class="row">
+        <span class="row-text"><b>Instagram</b><small>Direct messages and comments</small></span>
+        <input type="checkbox" class="toggle" data-site="instagram" checked />
+      </label>
+
+      <h3 class="group">appearance</h3>
+      <div class="row seg-row">
+        <span class="row-text"><b>Theme</b><small>For this popup and the in-chat picker.</small></span>
+        <div class="seg" role="radiogroup" aria-label="Theme">
+          <button type="button" role="radio" data-theme="auto" aria-checked="true">auto</button>
+          <button type="button" role="radio" data-theme="light" aria-checked="false">light</button>
+          <button type="button" role="radio" data-theme="dark" aria-checked="false">dark</button>
+        </div>
+      </div>
+      <div class="row seg-row tone-row">
+        <span class="row-text"><b>Skin tone</b><small>For hands and people emojis.</small></span>
+        <div class="seg tones" role="radiogroup" aria-label="Skin tone">
+          <button type="button" role="radio" data-tone="0" aria-checked="true" aria-label="Default">✋</button>
+          <button type="button" role="radio" data-tone="1" aria-checked="false" aria-label="Light">✋🏻</button>
+          <button type="button" role="radio" data-tone="2" aria-checked="false" aria-label="Medium-light">✋🏼</button>
+          <button type="button" role="radio" data-tone="3" aria-checked="false" aria-label="Medium">✋🏽</button>
+          <button type="button" role="radio" data-tone="4" aria-checked="false" aria-label="Medium-dark">✋🏾</button>
+          <button type="button" role="radio" data-tone="5" aria-checked="false" aria-label="Dark">✋🏿</button>
         </div>
       </div>
 
-      <div class="instructions">
-        <p><strong>Instructions:</strong></p>
-        <ul>
-          <li>Type the name of the emoji you want, It'll appear as a tooltip.</li>
-          <li>The extension will detect words and show related emojis.</li>
-          <li>Press the <strong>Up Arrow</strong> key to select your emoji.</li>
-          <li>If the <strong>Emoji</strong> doesn't show up just click on the text box and start typing again 😄</li>
-          <li>Click <strong><a href="https://muff-mojo.onrender.com" target="_blank" style="text-decoration: none;">Muff-Mojo🧁</a></strong> to know the names of your favourite emojis</li>
-        </ul>
-      </div>
-    </div>
-  </body>
+      <h3 class="group">behaviour</h3>
+      <label class="row">
+        <span class="row-text"><b>Suggest while typing</b><small>Show emojis for plain words. Off = only <code>:search</code>.</small></span>
+        <input type="checkbox" class="toggle" data-key="autoSuggest" checked />
+      </label>
+      <label class="row">
+        <span class="row-text"><b>Add a space after emoji</b><small>So you can keep typing straight away.</small></span>
+        <input type="checkbox" class="toggle" data-key="addSpace" checked />
+      </label>
 
+      <div class="stats" id="stats"></div>
+      <div class="links">
+        <a class="pill" href="https://github.com/owaismohammad/MuffMojo" target="_blank" rel="noopener">github</a>
+        <a class="pill" href="https://github.com/owaismohammad/MuffMojo/issues" target="_blank" rel="noopener">report a bug</a>
+      </div>
+    </section>
+
+    <div class="status" id="status" data-state="idle">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="status-text">Works on WhatsApp Web and Instagram</span>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="emoji-data.js"></script>
+  <script src="emojis.js"></script>
   <script src="popup.js"></script>
+</body>
 </html>
