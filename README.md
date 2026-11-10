@@ -197,5 +197,5 @@ Store graphics (icon, promo tiles, screenshots) are in `assets/store/`.
 
 <p align="center">
   <img src="assets/store/promo-440x280.png" width="360" alt="fire → 🔥, love → 😍, party → 🎉" /><br />
-  <sub>Made with 🍩 by <a href="https://github.com/owaismohammad">owaismohammad</a> · <a href="https://muffmojoweb.onrender.com/">muffmojoweb.onrender.com</a></sub>
+  <sub>Made with 🍩 by <a href="https://owaismohammad.vercel.app/">owaismohammad</a> · <a href="https://muffmojoweb.onrender.com/">muffmojoweb.onrender.com</a></sub>
 </p>
