@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Muff-Mojo Lexical test</title>
+<style>
+  body { margin: 0; font: 14px system-ui, sans-serif; background: #efeae2; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; }
+  footer { padding: 12px 16px; background: #f0f2f5; }
+  #editor { background: #fff; border-radius: 8px; padding: 9px 12px; min-height: 20px; outline: none; }
+  #editor p { margin: 0; }
+  #state { font: 12px monospace; padding: 8px 16px; color: #444; }
+</style>
+</head>
+<body>
+  <pre id="state"></pre>
+  <footer><div id="editor" contenteditable="true" role="textbox" aria-label="Type a message"></div></footer>
+  <script type="module">
+    import { createEditor, $getRoot } from 'https://esm.sh/lexical@0.17.1';
+    import { registerPlainText } from 'https://esm.sh/@lexical/plain-text@0.17.1?deps=lexical@0.17.1';
+    const editor = createEditor({ namespace: 'mm', onError: (e) => console.error(e) });
+    editor.setRootElement(document.getElementById('editor'));
+    registerPlainText(editor);
+    editor.registerUpdateListener(({ editorState }) => {
+      editorState.read(() => { window.lexicalText = $getRoot().getTextContent(); });
+      document.getElementById('state').textContent = 'Lexical state: ' + JSON.stringify(window.lexicalText);
+    });
+    window.lexicalEditor = editor;
+    window.lexicalReady = true;
+  </script>
+  <script src="../extension/shared/emoji-data.js"></script>
+  <script src="../extension/shared/emojis.js"></script>
+  <script src="../extension/content/content.js"></script>
+</body>
+</html>
