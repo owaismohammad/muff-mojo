@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Builds emoji-data.js — the full Unicode emoji set for Muff-Mojo.
+ * Builds extension/shared/emoji-data.js — the full Unicode emoji set for Muff-Mojo.
  *
  *   node tools/build-emoji-data.mjs
  *
@@ -90,5 +90,5 @@ globalThis.MuffMojoEmojiData = {
   rows: ${JSON.stringify(rows.join('\n'))}
 };
 `;
-writeFileSync(join(here, '..', 'emoji-data.js'), out);
+writeFileSync(join(here, '..', 'extension', 'shared', 'emoji-data.js'), out);
 console.log(`emoji-data.js: ${rows.length} emoji, ${seenCurated.size} hand-picked, ${(out.length / 1024).toFixed(0)} KB`);

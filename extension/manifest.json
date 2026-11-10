@@ -9,7 +9,7 @@
     "https://www.instagram.com/*"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "popup/popup.html",
     "default_title": "Muff-Mojo",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -30,7 +30,7 @@
         "https://web.whatsapp.com/*",
         "https://www.instagram.com/*"
       ],
-      "js": ["emoji-data.js", "emojis.js", "content.js"],
+      "js": ["shared/emoji-data.js", "shared/emojis.js", "content/content.js"],
       "run_at": "document_idle"
     }
   ]

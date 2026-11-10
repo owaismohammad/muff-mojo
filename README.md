@@ -1,83 +1,201 @@
-# Muff-Mojo 🧁
+<p align="center">
+  <img src="assets/store/icon-128.png" width="96" alt="Muff-Mojo cupcake icon" />
+</p>
 
-**Sprinkle some fun on your chats 🍩**
+<h1 align="center">Muff-Mojo 🧁</h1>
 
-Type a word and get the emoji. Muff-Mojo shows emoji suggestions right above your cursor on **WhatsApp Web** and **Instagram**.
+<p align="center">
+  <b>Type a word. Get the emoji.</b><br />
+  Emoji suggestions right above your cursor on WhatsApp Web &amp; Instagram.
+</p>
 
-## How it works
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke"><img alt="Chrome Web Store users" src="https://img.shields.io/chrome-web-store/users/pbngdkapkjlkimhjhbkdcfppegcknjke?style=flat-square&label=active%20users&color=ff6fa8" /></a>
+  <a href="https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke/reviews"><img alt="Chrome Web Store rating" src="https://img.shields.io/chrome-web-store/rating/pbngdkapkjlkimhjhbkdcfppegcknjke?style=flat-square&color=ffd23f" /></a>
+  <a href="https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke/reviews"><img alt="Chrome Web Store rating count" src="https://img.shields.io/chrome-web-store/rating-count/pbngdkapkjlkimhjhbkdcfppegcknjke?style=flat-square&label=reviews&color=ffd23f" /></a>
+  <a href="https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke"><img alt="Chrome Web Store version" src="https://img.shields.io/chrome-web-store/v/pbngdkapkjlkimhjhbkdcfppegcknjke?style=flat-square&label=chrome%20web%20store&color=2ec27e" /></a>
+  <br />
+  <img alt="emoji" src="https://img.shields.io/badge/emoji-1%2C914-2ec27e?style=flat-square" />
+  <img alt="private" src="https://img.shields.io/badge/data%20collected-none-171717?style=flat-square" />
+</p>
 
-| You type | You get |
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke"><b>⬇️ Add to Chrome</b></a> &nbsp;·&nbsp;
+  <a href="https://muffmojoweb.onrender.com/"><b>🌐 Website</b></a> &nbsp;·&nbsp;
+  <a href="https://muffmojoweb.onrender.com/#playground"><b>🎮 Try it in the playground</b></a>
+</p>
+
+<p align="center">
+  <img src="assets/store/marquee-1400x560.png" alt="Typing 'snack' in a chat shows a row of snack emojis above the cursor" />
+</p>
+
+---
+
+## ✨ How it works
+
+<img src="assets/store/screenshots/1-type-a-word.png" alt="Typing 'party' shows 🎉 and friends above the cursor" />
+
+1. **Type a word** like `love`, `fire` or `pizza` in any chat box.
+2. **Pick one** with <kbd>↑</kbd> <kbd>↓</kbd>.
+3. **Press <kbd>Tab</kbd>** (or click) and the word turns into the emoji.
+
+<kbd>Enter</kbd> still sends your message as usual, and <kbd>Esc</kbd> hides the picker for that word.
+
+## 💕 More than one match? Pick the one you mean
+
+<img src="assets/store/screenshots/2-pick-one.png" alt="Typing 'love' offers 😍 😘 🥰 ❤️ 💑 💕" />
+
+Every word can have a few emojis, and the ones you've used recently move to the front.
+
+## 🔍 Can't remember the word? Search with a colon
+
+<img src="assets/store/screenshots/3-colon-search.png" alt="Typing ':cake' searches every emoji" />
+
+Type `:` and part of a name (`:cake`, `:hamsa`, `:japan`) to search everything. <kbd>Enter</kbd> or <kbd>Tab</kbd> picks it.
+
+## 🌈 Every emoji there is
+
+<img src="assets/store/screenshots/4-every-emoji.png" alt="1,914 emoji across ten categories" />
+
+| | |
 | --- | --- |
-| `love` | 😍 ❤️ 💑 |
-| `fire` | 🔥 |
-| `:lau` (colon search) | 😂 👏 … |
+| 🔤 **1,914 emoji** | Everything up to Emoji 17, flags included |
+| 🗝️ **6,639 trigger words** | `ThumbsUp`, `thumbs_up` and `thumbsup` all give 👍 |
+| ✋ **Skin tones** | Pick one in Settings and it sticks |
+| 🤫 **Quiet by default** | Everyday words like "like" or "time" don't pop the picker |
 
-- **Type a word** like `love`, `pizza` or `skull`. Matching emojis pop up above it.
-- **↑** moves to the next emoji, **↓** back. **Tab** (or a click) to insert. The word turns into the emoji.
-- **`:` + letters** searches all ~1,900 emojis by name or keyword (`:hamsa` → 🪬). **Enter** also inserts in this mode.
-- **Every Unicode emoji** up to Emoji 17 is included: flags (`japan` → 🇯🇵), objects, symbols, and skin tones (set yours in Settings).
-- **Esc** hides the picker for that word. **Enter** still sends your message as usual.
+## 🔒 Made to stay out of your way
 
-Words are case-insensitive, and `thumbs_up`, `thumbsUp` and `thumbsup` all work.
+<img src="assets/store/screenshots/5-private.png" alt="Private, works where you chat, light and dark, just type" />
 
-While you type normally, the picker only opens for hand-picked trigger words, one-word emoji names (`pizza`, `rocket`), and country names. Everyday words like "like" or "time" don't open it. Every other keyword works through `:` search.
+- **Private:** the word list lives inside the extension, and nothing you type leaves your browser. The only permission is `storage`, for your settings and recently used emojis.
+- **Where you chat:** WhatsApp Web and Instagram DMs/comments, each one can be switched on or off.
+- **Light &amp; dark:** the picker matches the page, or you choose.
 
-## The popup
+## 🧁 The popup
 
-- **Emojis**: search the dictionary or browse by category. Hover to see the trigger words, click to copy.
-- **How to use**: a quick guide.
-- **Settings**: turn it off everywhere, per site (WhatsApp / Instagram), switch off plain-word suggestions (`:search` only), stop the automatic space after emojis, pick light/dark, and choose a skin tone.
+Click the cupcake in your toolbar to:
 
-## Install (developer mode)
+- 🔎 **Browse and search** every emoji, see what to type, click to copy
+- 🕘 See your **recently used** emojis
+- ⚙️ Turn it off per site, use `:search` only, pick a theme or skin tone
 
-1. `git clone https://github.com/owaismohammad/MuffMojo.git`
-2. Open `chrome://extensions` and turn on **Developer mode**.
-3. Click **Load unpacked** and pick the `MuffMojo` folder.
-4. Open WhatsApp Web or Instagram and start typing.
+---
 
-## Project layout
+## 📦 Install
+
+**From the Chrome Web Store (recommended)**
+
+[**⬇️ Add Muff-Mojo to Chrome**](https://chromewebstore.google.com/detail/pbngdkapkjlkimhjhbkdcfppegcknjke): one click and you're done.
+
+> 🎮 **Want to try it first?** Play with the picker right in your browser on the
+> [Muff-Mojo website](https://muffmojoweb.onrender.com/#playground), no install needed.
+
+**From source (developer mode)**
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/owaismohammad/MuffMojo.git
+   ```
+2. Open `chrome://extensions` and switch on **Developer mode**.
+3. Click **Load unpacked** and choose the `extension` folder inside `MuffMojo`.
+4. Open WhatsApp Web or Instagram and start typing. 🎉
+
+## 🛠️ For developers
+
+<details>
+<summary><b>Project layout</b></summary>
 
 ```
-manifest.json     MV3 manifest
-emoji-data.js     every Unicode emoji (generated — don't edit; see below)
-emojis.js         dictionary runtime: lookup, search, skin tones (shared by content script and popup)
-tools/            emoji data build script, hand-picked trigger words, vendored source data
-content.js        in-page suggestion picker
-popup.html/css/js toolbar popup
-icons/            toolbar and store icons
-dev/playground.html  local test page (serve the repo root, e.g. `python -m http.server`)
-dev/lexical.html     same, with a real Lexical editor (what WhatsApp Web uses)
+MuffMojo/
+├── extension/                 🧁 everything Chrome loads (this is what you zip)
+│   ├── manifest.json          MV3 manifest
+│   ├── icons/                 toolbar icons (16 / 32 / 48 / 128)
+│   ├── shared/
+│   │   ├── emoji-data.js      every Unicode emoji (generated, don't edit by hand)
+│   │   └── emojis.js          lookup, search and skin tones (used by content script + popup)
+│   ├── content/
+│   │   └── content.js         the in-chat suggestion picker
+│   └── popup/
+│       ├── popup.html         toolbar popup
+│       ├── popup.css
+│       ├── popup.js
+│       └── theme-boot.js      applies the saved theme before first paint
+│
+├── tools/                     🛠️ build scripts (not shipped)
+│   ├── build-emoji-data.mjs   regenerates extension/shared/emoji-data.js
+│   ├── curated.json           hand-picked trigger words
+│   └── vendor/                source emoji datasets (MIT)
+│
+├── dev/                       🧪 local test pages (serve the repo root, e.g. python -m http.server)
+│   ├── playground.html        content script + popup on a plain page
+│   └── lexical.html           same, with a real Lexical editor (what WhatsApp Web uses)
+│
+└── assets/                    🎨 artwork (not shipped)
+    ├── brand/                 original logo art
+    └── store/                 Chrome Web Store icon, promo tiles and screenshots
 ```
 
-### Emoji data
+</details>
 
-`emoji-data.js` is generated from two MIT-licensed datasets in `tools/vendor/`
-([unicode-emoji-json](https://github.com/muan/unicode-emoji-json) for names, categories and skin-tone
-support, and [emojilib](https://github.com/muan/emojilib) for keywords), plus our own trigger words in
-`tools/curated.json`. Emojis listed there rank first for their words.
+<details>
+<summary><b>Adding or changing trigger words</b></summary>
 
-To add or change trigger words, edit `tools/curated.json` (first word = display name), then rebuild:
+`extension/shared/emoji-data.js` is generated from two MIT-licensed datasets in `tools/vendor/`
+([unicode-emoji-json](https://github.com/muan/unicode-emoji-json) for names, categories and skin tones,
+and [emojilib](https://github.com/muan/emojilib) for keywords), plus our own trigger words in `tools/curated.json`.
 
-```bash
-node tools/build-emoji-data.mjs
-```
+Add a line to `tools/curated.json` (first word = display name):
 
 ```json
 ["🧋", "boba", "bubble_tea", "milk_tea"]
 ```
 
-To pick up a new Unicode release, replace the files in `tools/vendor/` with newer versions of those
-packages, update the file names at the top of `tools/build-emoji-data.mjs`, and rebuild.
+Then rebuild:
 
-## What's new in 3.0
+```bash
+node tools/build-emoji-data.mjs
+```
 
-- New picker: several matches per word, keyboard navigation, light/dark themes, stays put while you scroll.
-- New popup with a searchable dictionary, recently used emojis, and settings.
-- All ~1,900 Unicode emojis (up to Emoji 17), with flags and skin tones.
-- Emojis go in through the site's own editor, so the message you send matches what you see and undo works.
-- Fixed: text after the cursor was deleted when an emoji was inserted.
-- Fixed: clicking around the page stacked up duplicate tooltips and listeners.
-- Fixed: the ↑ key was blocked even when no emoji was showing.
-- Fixed: duplicate words overriding each other (`love`, `kiss`, `wave`, `moon`, …).
-- Fixed: the tooltip was mispositioned after scrolling or in an empty box.
-- Fixed: the invalid manifest icon key and missing icon file.
+To pick up a new Unicode release, replace the files in `tools/vendor/` with newer versions of those packages,
+update the file names at the top of `tools/build-emoji-data.mjs`, and rebuild.
+
+</details>
+
+<details>
+<summary><b>Packaging for the Chrome Web Store</b></summary>
+
+Zip the **`extension/`** folder and upload that. Nothing outside it is needed.
+
+```powershell
+# Windows (built-in tar; Compress-Archive on PowerShell 5 writes backslash paths the store rejects)
+tar.exe -a -c -f muff-mojo.zip -C extension *
+```
+
+```bash
+# macOS / Linux
+cd extension && zip -r ../muff-mojo.zip . && cd ..
+```
+
+Store graphics (icon, promo tiles, screenshots) are in `assets/store/`.
+
+</details>
+
+## 🆕 What's new in 3.0
+
+- 🎨 Brand-new picker and popup, with light &amp; dark themes
+- 💕 Several emojis per word, with keyboard navigation
+- 🌍 All 1,914 Unicode emojis, flags and skin tones
+- ✅ Emojis go in through the chat's own editor, so what you send is what you see (and undo works)
+- 🐛 Fixed: text after the cursor vanishing when an emoji was inserted
+- 🐛 Fixed: duplicate tooltips and double insertions after clicking around
+- 🐛 Fixed: the ↑ key being blocked when no emoji was showing
+- 🐛 Fixed: words overriding each other (`love`, `kiss`, `wave`, `moon`…)
+- 🐛 Fixed: the tooltip landing in the wrong place after scrolling
+
+---
+
+<p align="center">
+  <img src="assets/store/promo-440x280.png" width="360" alt="fire → 🔥, love → 😍, party → 🎉" /><br />
+  <sub>Made with 🍩 by <a href="https://github.com/owaismohammad">owaismohammad</a> · <a href="https://muffmojoweb.onrender.com/">muffmojoweb.onrender.com</a></sub>
+</p>
