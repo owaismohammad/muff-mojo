@@ -1,8 +1,13 @@
-<p align="center">
-  <img src="assets/store/icon-128.png" width="96" alt="Muff-Mojo cupcake icon" />
-</p>
-
-<h1 align="center">Muff-Mojo 🧁</h1>
+<table align="center">
+  <tr>
+    <td valign="middle">
+      <img src="assets/store/icon-128.png" width="80" alt="Muff-Mojo cupcake icon">
+    </td>
+    <td valign="middle">
+      <h1>muff-mojo </h1>
+    </td>
+  </tr>
+</table>
 
 <p align="center">
   <b>Type a word. Get the emoji.</b><br />
